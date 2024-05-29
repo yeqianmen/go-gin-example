@@ -3,11 +3,7 @@ module github.com/yeqianmen/go-gin-example
 go 1.13
 
 replace (
-	github.com/yeqianmen/go-gin-example/conf => ~/Downloads/GO语言/go-gin-example/pkg/conf v1.0.0
-	github.com/yeqianmen/go-gin-example/middleware => ~/Downloads/GO语言/go-gin-example/middleware v1.0.0
-	github.com/yeqianmen/go-gin-example/models => ~/Downloads/GO语言/go-gin-example/models v1.0.0
-	github.com/yeqianmen/go-gin-example/pkg/setting => ~/Downloads/GO语言/go-gin-example/pkg/setting v1.0.0
-	github.com/yeqianmen/go-gin-example/routers => ~/Downloads/GO语言/go-gin-example/routers v1.0.0
+	github.com/yeqianmen/go-gin-example/ => ../go-gin-example
 )
 
 require (
