@@ -5,8 +5,11 @@ import (
 	"github.com/yeqianmen/go-gin-example/pkg/setting"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
 	"log"
+	"os"
+	"time"
 )
 
 var db *gorm.DB
@@ -27,6 +30,16 @@ func init() {
 	if err != nil {
 		log.Fatal(2, "Fail to get section 'database': %v", err)
 	}
+	newLogger := logger.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
+		logger.Config{
+			SlowThreshold:             time.Second, // Slow SQL threshold
+			LogLevel:                  logger.Info, // Log level
+			IgnoreRecordNotFoundError: true,        // Ignore ErrRecordNotFound error for logger
+			ParameterizedQueries:      true,        // Don't include params in the SQL log
+			Colorful:                  true,        // Disable color
+		},
+	)
 
 	dbName = sec.Key("NAME").String()
 	user = sec.Key("USER").String()
@@ -40,9 +53,11 @@ func init() {
 		dbName)
 
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
+		Logger: newLogger,
 		NamingStrategy: schema.NamingStrategy{
 			TablePrefix:   tablePrefix, // 表名前缀
 			SingularTable: true,        // 使用单数表名
+
 		},
 	})
 	if err != nil {
