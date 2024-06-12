@@ -7,6 +7,7 @@ replace github.com/yeqianmen/go-gin-example/ => ../go-gin-example
 require (
 	github.com/astaxie/beego v1.12.3
 	github.com/bytedance/sonic v1.11.7 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/gabriel-vasile/mimetype v1.4.4 // indirect
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-ini/ini v1.67.0
